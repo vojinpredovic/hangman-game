@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Word list class that processes a file and adds all the words into a list
+ * Word list class that processes a file and adds all the words into a list to be used for guessing
  */
 public class WordList {
     private List<String> words;
