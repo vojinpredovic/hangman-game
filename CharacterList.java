@@ -32,13 +32,16 @@ public class CharacterList {
      */
     public boolean guessLetter(char letter) {
         boolean set = false;
-        guessedLetters.add(letter);
 
         for (int i = 0; i < characterList.size(); i++) {
             if (letter == characterList.get(i)) {
                 hiddenList.set(i, characterList.get(i));
                 set = true;
             }
+        }
+
+        if (!set) {
+            guessedLetters.add(letter);
         }
 
         return set;
@@ -50,20 +53,34 @@ public class CharacterList {
      * @return true if the word is correctly guessed and false if not
      */
     public boolean guessWord(String word) {
-        boolean set = false;
+        //boolean set = false;
+        String current = convertToString();
 
-        if (word.length() == characterList.size()) {
+        if (word.equals(current)) {
             for (int i = 0; i < characterList.size(); i++) {
                 if (word.charAt(i) == characterList.get(i)) {
                     hiddenList.set(i, characterList.get(i));
-                    set = true;
                 }
             }
-        } else {
-            System.out.println("Guess is too short/long!");
+
+            return true;
         }
 
-        return set;
+        return false;
+    }
+
+    /**
+     * Private helper method that converts the list of characters into a string
+     * @return String representation of characters from the character list
+     */
+    private String convertToString() {
+        String result = "";
+
+        for (char c : characterList) {
+            result += c;
+        }
+
+        return result;
     }
 
     /**
